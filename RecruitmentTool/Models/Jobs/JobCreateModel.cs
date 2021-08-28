@@ -1,9 +1,11 @@
-namespace RecruitmentTool.Data.Models
+namespace RecruitmentTool.Models.Jobs
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Job : BaseModel
+    using RecruitmentTool.Models.Skills;
+
+    public class JobCreateModel
     {
         [Required]
         public string Title { get; init; }
@@ -14,8 +16,6 @@ namespace RecruitmentTool.Data.Models
         [Required]
         public decimal Salary { get; init; }
 
-        public IEnumerable<Skill> Skills { get; init; } = new List<Skill>();
-
-        public IEnumerable<Interview> Interviews { get; set; } = new List<Interview>();
+        public IEnumerable<SkillServiceModel> Skills { get; init; } = new List<SkillServiceModel>();
     }
 }

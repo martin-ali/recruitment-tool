@@ -7,18 +7,18 @@ namespace RecruitmentTool.Data.Models
     public class Candidate : Person
     {
         [Required]
-        public string FirstName { get; init; }
+        public string FirstName { get; set; }
 
         [Required]
-        public string Bio { get; init; }
+        public string Bio { get; set; }
 
         [Required]
-        public DateTime BirthDate { get; init; }
+        public DateTime BirthDate { get; set; }
 
-        public IEnumerable<Skill> Skills { get; init; } = new List<Skill>();
+        public IEnumerable<CandidateSkill> CandidateSkills { get; set; } = new List<CandidateSkill>();
 
-        public int RecruiterId { get; init; }
+        public int RecruiterId { get; set; }
 
-        public Recruiter Recruiter { get; init; }
+        public Recruiter Recruiter { get; set; }
     }
 }

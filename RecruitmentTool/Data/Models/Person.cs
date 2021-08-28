@@ -5,10 +5,10 @@ namespace RecruitmentTool.Data.Models
     public abstract class Person : BaseModel
     {
         [Required]
-        public string LastName { get; init; }
+        public string LastName { get; set; }
 
         [Required]
         [EmailAddress]
-        public string Email { get; init; }
+        public string Email { get; set; }
     }
 }

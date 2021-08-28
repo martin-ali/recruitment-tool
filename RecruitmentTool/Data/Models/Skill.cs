@@ -8,6 +8,6 @@ namespace RecruitmentTool.Data.Models
         [Required]
         public string Name { get; init; }
 
-        public IEnumerable<Candidate> Candidates { get; init; } = new List<Candidate>();
+        public IEnumerable<CandidateSkill> CandidateSkills { get; init; } = new List<CandidateSkill>();
     }
 }

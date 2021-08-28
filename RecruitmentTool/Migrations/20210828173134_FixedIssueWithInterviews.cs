@@ -1,10 +1,9 @@
-﻿namespace RecruitmentTool.Data.Migrations
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace RecruitmentTool.Migrations
 {
-    using System;
-
-    using Microsoft.EntityFrameworkCore.Migrations;
-
-    public partial class AddedInitialModels : Migration
+    public partial class FixedIssueWithInterviews : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,6 +68,7 @@
                     Bio = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RecruiterId = table.Column<int>(type: "int", nullable: false),
+                    SkillId = table.Column<int>(type: "int", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -81,30 +81,12 @@
                         principalTable: "Recruiters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CandidateSkill",
-                columns: table => new
-                {
-                    CandidatesId = table.Column<int>(type: "int", nullable: false),
-                    SkillsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CandidateSkill", x => new { x.CandidatesId, x.SkillsId });
                     table.ForeignKey(
-                        name: "FK_CandidateSkill_Candidates_CandidatesId",
-                        column: x => x.CandidatesId,
-                        principalTable: "Candidates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CandidateSkill_Skills_SkillsId",
-                        column: x => x.SkillsId,
+                        name: "FK_Candidates_Skills_SkillId",
+                        column: x => x.SkillId,
                         principalTable: "Skills",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,7 +145,7 @@
                         column: x => x.RecruiterId,
                         principalTable: "Recruiters",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -172,9 +154,9 @@
                 column: "RecruiterId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CandidateSkill_SkillsId",
-                table: "CandidateSkill",
-                column: "SkillsId");
+                name: "IX_Candidates_SkillId",
+                table: "Candidates",
+                column: "SkillId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CandidateSkills_CandidateId",
@@ -210,25 +192,22 @@
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CandidateSkill");
-
-            migrationBuilder.DropTable(
                 name: "CandidateSkills");
 
             migrationBuilder.DropTable(
                 name: "Interviews");
 
             migrationBuilder.DropTable(
-                name: "Skills");
-
-            migrationBuilder.DropTable(
                 name: "Candidates");
 
             migrationBuilder.DropTable(
-                name: "Jobs");
+                name: "Recruiters");
 
             migrationBuilder.DropTable(
-                name: "Recruiters");
+                name: "Skills");
+
+            migrationBuilder.DropTable(
+                name: "Jobs");
         }
     }
 }

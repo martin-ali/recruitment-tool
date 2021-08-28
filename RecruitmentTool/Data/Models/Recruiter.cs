@@ -1,5 +1,6 @@
 namespace RecruitmentTool.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static RecruitmentTool.Common.DataConstants.Interviews;
@@ -10,9 +11,10 @@ namespace RecruitmentTool.Data.Models
         public string Country { get; init; }
 
         [Required]
-        public Interview[] Interviews { get; init; } = new Interview[CountPerRecruiter];
+        public int InterviewSlotsFree = CountPerRecruiter;
 
-        [Required]
+        public IEnumerable<Interview> Interviews { get; init; } = new List<Interview>();
+
         public int ExperienceLevel { get; set; }
     }
 }
