@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace RecruitmentTool.Data.Migrations
+﻿namespace RecruitmentTool.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedInitialModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
