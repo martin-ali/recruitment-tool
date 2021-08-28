@@ -15,7 +15,7 @@ namespace RecruitmentTool.Data.Models
         [Required]
         public DateTime BirthDate { get; init; }
 
-        public IEnumerable<string> Skills { get; init; }
+        public IEnumerable<Skill> Skills { get; init; } = new List<Skill>();
 
         public int RecruiterId { get; init; }
 
